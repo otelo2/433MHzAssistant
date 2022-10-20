@@ -1,5 +1,6 @@
 # import main Flask class and request object
 from flask import Flask, request
+from sys import platform
 import config
 import subprocess
 
@@ -17,6 +18,10 @@ def query_example():
     if verification_code == config.expected_verification_code:
         # Execute IQ to disarm alarm
         user = subprocess.getoutput("whoami")
+        
+        if platform == "linux":
+            # linux
+            html_output += subprocess.getoutput("sudo whoami")
         
         html_output = f"Hi, you are running as {user} and you have successfully disarmed the alarm"
         return html_output
