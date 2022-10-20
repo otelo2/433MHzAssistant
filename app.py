@@ -14,23 +14,24 @@ def index():
 @app.route('/alarm/disarm')
 def query_example():
     # Expect: http://localhost:5000/alarm/disarm?code=SECRETCODEFROMCONFIG
+    # Get the code from the URL
     verification_code = request.args.get('code')
+    # Check if the code is correct
     if verification_code == config.expected_verification_code:
-        # Execute IQ to disarm alarm
-        
+        # Check if the OS where this script is running is Linux
         output = ""
         if platform == "linux":
+            # Run the disarm script
             command = f"{config.commands_directory}/disableAlarm.sh"
-            print(command)
             output = subprocess.getoutput(command)
-            print(output)
         else:
             return "Not supported on this platform"
         
+        # Return the output of the disarm script
         if "End of file" in output:
             html_output = f"<h1> Alarm (maybe) disarmed. </h1> <h2>Confirm with your ears.</h2>"
         else:
-            html_output = f"Alarm (maybe) not disarmed. Check logs."
+            html_output = f"Alarm (maybe) not disarmed. An error probably happened. Check logs."
             
         html_output += f"Here is the output from the command: \n {output}"	
         return html_output
