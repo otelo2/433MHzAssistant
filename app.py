@@ -21,7 +21,7 @@ def query_example():
         
         if platform == "linux":
             # linux
-            html_output += subprocess.getoutput("sudo whoami")
+            html_output =+ subprocess.getoutput("sudo whoami")
         
         html_output = f"Hi, you are running as {user} and you have successfully disarmed the alarm"
         return html_output
