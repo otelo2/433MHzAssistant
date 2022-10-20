@@ -22,7 +22,7 @@ def query_example():
         output = ""
         if platform == "linux":
             # linux
-            command = f"sudo /home/pi/rpitx/sendiq -s 250000 -f 434.0e6 -t u8 -i \"{config.IQ_directory}/disableAlarm-b2.iq\""
+            command = f"sudo /home/pi/rpitx/sendiq -s 250000 -f 434.0e6 -t u8 -i {config.IQ_directory}/disableAlarm-b2.iq"
             print(command)
             output = subprocess.check_output(command)
         
