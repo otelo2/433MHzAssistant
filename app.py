@@ -24,9 +24,9 @@ def query_example():
             # linux
             command = f"sudo /home/pi/rpitx/sendiq -s 250000 -f 434.0e6 -t u8 -i {config.IQ_directory}/disableAlarm-b2.iq"
             print(command)
-            hmm = f"{config.commands_directory}/disableAlarm.sh"
+            usingSH = f"{config.commands_directory}/disableAlarm.sh"
+            hmm = subprocess.getoutput(usingSH)
             print(hmm)
-            hmm = subprocess.getoutput(hmm)
             output = subprocess.run([sudo, "/home/pi/rpitx/sendiq", -s, 250000, -f, 434.0e6, -t, u8, -i, "{config.IQ_directory}/disableAlarm-b2.iq"], capture_output=True)
         
         html_output = f"Hi, you are running as {user} and you have successfully disarmed the alarm. Here is the output from the command: {output} or {hmm}"	
