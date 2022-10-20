@@ -17,7 +17,6 @@ def query_example():
     verification_code = request.args.get('code')
     if verification_code == config.expected_verification_code:
         # Execute IQ to disarm alarm
-        user = subprocess.getoutput("whoami")
         
         output = ""
         if platform == "linux":
@@ -25,8 +24,15 @@ def query_example():
             print(command)
             output = subprocess.getoutput(command)
             print(output)
+        else:
+            return "Not supported on this platform"
         
-        html_output = f"Hi, you are running as {user} and you have successfully disarmed the alarm. Here is the output from the command: \n {output}"	
+        if output.contains("End of file"):
+            html_output = f"<h1> Alarm (maybe) disarmed. </h1> <h2>Confirm with your ears.</h2>"
+        else:
+            html_output = f"Alarm (maybe) not disarmed. Check logs."
+            
+        html_output += f"Here is the output from the command: \n {output}"	
         return html_output
     else:
         return 'Why are we here? Just to suffer?' 
