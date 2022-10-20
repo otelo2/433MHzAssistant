@@ -19,23 +19,17 @@ def query_example():
         # Execute IQ to disarm alarm
         user = subprocess.getoutput("whoami")
         
-        sudoTest = ""
+        output = ""
         if platform == "linux":
             # linux
-            sudoTest = subprocess.getoutput("sudo whoami")
+            command = f"sudo /home/pi/rpitx/sendiq -s 250000 -f 434.0e6 -t u8 -i \"{config.IQ_directory}/disableAlarm-b2.iq\""
+            print(command)
+            output = subprocess.check_output(command)
         
-        html_output = f"Hi, you are running as {user} and you have successfully disarmed the alarm"
-        return html_output + sudoTest
+        html_output = f"Hi, you are running as {user} and you have successfully disarmed the alarm. Here is the output from the command: {output}"
+        return html_output
     else:
         return 'Why are we here? Just to suffer?' 
-
-@app.route('/form-example')
-def form_example():
-    return 'Form Data Example'
-
-@app.route('/json-example')
-def json_example():
-    return 'JSON Object Example'
 
 if __name__ == '__main__':
     # run app in debug mode on port 5000
