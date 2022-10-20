@@ -21,15 +21,12 @@ def query_example():
         
         output = ""
         if platform == "linux":
-            # linux
-            command = f"sudo /home/pi/rpitx/sendiq -s 250000 -f 434.0e6 -t u8 -i {config.IQ_directory}/disableAlarm-b2.iq"
+            command = f"{config.commands_directory}/disableAlarm.sh"
             print(command)
-            usingSH = f"{config.commands_directory}/disableAlarm.sh"
-            hmm = subprocess.getoutput(usingSH)
-            print(hmm)
-            output = subprocess.run([sudo, "/home/pi/rpitx/sendiq", -s, 250000, -f, 434.0e6, -t, u8, -i, "{config.IQ_directory}/disableAlarm-b2.iq"], capture_output=True)
+            output = subprocess.getoutput(command)
+            print(output)
         
-        html_output = f"Hi, you are running as {user} and you have successfully disarmed the alarm. Here is the output from the command: {output} or {hmm}"	
+        html_output = f"Hi, you are running as {user} and you have successfully disarmed the alarm. Here is the output from the command: \n {output}"	
         return html_output
     else:
         return 'Why are we here? Just to suffer?' 
