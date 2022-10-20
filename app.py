@@ -19,12 +19,13 @@ def query_example():
         # Execute IQ to disarm alarm
         user = subprocess.getoutput("whoami")
         
+        sudoTest = ""
         if platform == "linux":
             # linux
-            html_output =+ subprocess.getoutput("sudo whoami")
+            sudoTest =+ subprocess.getoutput("sudo whoami")
         
         html_output = f"Hi, you are running as {user} and you have successfully disarmed the alarm"
-        return html_output
+        return html_output + sudoTest
     else:
         return 'Why are we here? Just to suffer?' 
 
