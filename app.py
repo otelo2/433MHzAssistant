@@ -27,7 +27,7 @@ def query_example():
         else:
             return "Not supported on this platform"
         
-        if output.contains("End of file"):
+        if "End of file" in output:
             html_output = f"<h1> Alarm (maybe) disarmed. </h1> <h2>Confirm with your ears.</h2>"
         else:
             html_output = f"Alarm (maybe) not disarmed. Check logs."
