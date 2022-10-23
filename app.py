@@ -37,6 +37,87 @@ def query_example():
         return html_output
     else:
         return 'Why are we here? Just to suffer?' 
+    
+@app.route('/alarm/arm/full')
+def query_example():
+    # Expect: http://localhost:5000/alarm/disarm?code=SECRETCODEFROMCONFIG
+    # Get the code from the URL
+    verification_code = request.args.get('code')
+    # Check if the code is correct
+    if verification_code == config.expected_verification_code:
+        # Check if the OS where this script is running is Linux
+        output = ""
+        if platform == "linux":
+            # Run the disarm script
+            command = f"{config.commands_directory}/enableFullAlarm.sh"
+            output = subprocess.getoutput(command)
+        else:
+            return "Not supported on this platform"
+        
+        # Return the output of the disarm script
+        if "End of file" in output:
+            html_output = f"<h1> Full Alarm (maybe) armed. </h1> <h2>Confirm with your ears.</h2>"
+        else:
+            html_output = f"Full Alarm (maybe) not armed. An error probably happened. Check logs."
+            
+        html_output += f"Here is the output from the command: \n {output}"	
+        return html_output
+    else:
+        return 'Why are we here? Just to suffer?' 
+    
+@app.route('/alarm/arm/downstairs')
+def query_example():
+    # Expect: http://localhost:5000/alarm/disarm?code=SECRETCODEFROMCONFIG
+    # Get the code from the URL
+    verification_code = request.args.get('code')
+    # Check if the code is correct
+    if verification_code == config.expected_verification_code:
+        # Check if the OS where this script is running is Linux
+        output = ""
+        if platform == "linux":
+            # Run the disarm script
+            command = f"{config.commands_directory}/enableDownstairsAlarm.sh"
+            output = subprocess.getoutput(command)
+        else:
+            return "Not supported on this platform"
+        
+        # Return the output of the disarm script
+        if "End of file" in output:
+            html_output = f"<h1> Downstairs Alarm (maybe) armed. </h1> <h2>Confirm with your ears.</h2>"
+        else:
+            html_output = f"Downstairs Alarm (maybe) not armed. An error probably happened. Check logs."
+            
+        html_output += f"Here is the output from the command: \n {output}"	
+        return html_output
+    else:
+        return 'Why are we here? Just to suffer?' 
+    
+@app.route('/alarm/emergency')
+def query_example():
+    # Expect: http://localhost:5000/alarm/disarm?code=SECRETCODEFROMCONFIG
+    # Get the code from the URL
+    verification_code = request.args.get('code')
+    # Check if the code is correct
+    if verification_code == config.expected_verification_code:
+        # Check if the OS where this script is running is Linux
+        output = ""
+        if platform == "linux":
+            # Run the disarm script
+            command = f"{config.commands_directory}/enableEmergencyAlarm.sh"
+            output = subprocess.getoutput(command)
+        else:
+            return "Not supported on this platform"
+        
+        # Return the output of the disarm script
+        if "End of file" in output:
+            html_output = f"<h1> Downstairs Alarm (maybe) armed. </h1> <h2>Confirm with your ears.</h2>"
+        else:
+            html_output = f"Downstairs Alarm (maybe) not armed. An error probably happened. Check logs."
+            
+        html_output += f"Here is the output from the command: \n {output}"	
+        return html_output
+    else:
+        return 'Why are we here? Just to suffer?' 
 
 if __name__ == '__main__':
     # run app in debug mode on port 5000

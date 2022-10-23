@@ -6,3 +6,6 @@ Because
 
 ## config.py
 expected_verification_code = 'XXXXXXXXXXXXX'
+
+## Interesting reading
+https://ifttt.com/explore/new-google-assistant-capabilities
