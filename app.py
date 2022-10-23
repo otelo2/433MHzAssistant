@@ -12,7 +12,7 @@ def index():
     return 'Under construction'
 
 @app.route('/alarm/disarm')
-def query_example():
+def query_example1():
     # Expect: http://localhost:5000/alarm/disarm?code=SECRETCODEFROMCONFIG
     # Get the code from the URL
     verification_code = request.args.get('code')
@@ -39,7 +39,7 @@ def query_example():
         return 'Why are we here? Just to suffer?' 
     
 @app.route('/alarm/arm/full')
-def query_example():
+def query_example2():
     # Expect: http://localhost:5000/alarm/disarm?code=SECRETCODEFROMCONFIG
     # Get the code from the URL
     verification_code = request.args.get('code')
@@ -66,7 +66,7 @@ def query_example():
         return 'Why are we here? Just to suffer?' 
     
 @app.route('/alarm/arm/downstairs')
-def query_example():
+def query_example3():
     # Expect: http://localhost:5000/alarm/disarm?code=SECRETCODEFROMCONFIG
     # Get the code from the URL
     verification_code = request.args.get('code')
@@ -93,7 +93,7 @@ def query_example():
         return 'Why are we here? Just to suffer?' 
     
 @app.route('/alarm/emergency')
-def query_example():
+def query_example4():
     # Expect: http://localhost:5000/alarm/disarm?code=SECRETCODEFROMCONFIG
     # Get the code from the URL
     verification_code = request.args.get('code')
