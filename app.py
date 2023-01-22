@@ -22,7 +22,7 @@ def disarmAlarm():
     
     if (code_is_valid(request.args.get('code')) and running_on_linux()):
         output = execute_command(commandName);
-        if command_ran_successfully():
+        if command_ran_successfully(output):
             html_output = f"<h1> Alarm (maybe) {action}. </h1> <h2>Confirm with your ears.</h2>"
             send_notification(action, request.args.get('sentBy'), ip_addr)
         else:
@@ -42,7 +42,7 @@ def fullAlarmArm():
     
     if (code_is_valid(request.args.get('code')) and running_on_linux()):
         output = execute_command(commandName);
-        if command_ran_successfully():
+        if command_ran_successfully(output):
             html_output = f"<h1> Alarm (maybe) {action}. </h1> <h2>Confirm with your ears.</h2>"
             send_notification(action, request.args.get('sentBy'), ip_addr)
         else:
@@ -63,7 +63,7 @@ def downstairsAlarmArm():
     
     if (code_is_valid(request.args.get('code')) and running_on_linux()):
         output = execute_command(commandName);
-        if command_ran_successfully():
+        if command_ran_successfully(output):
             html_output = f"<h1> Alarm (maybe) {action}. </h1> <h2>Confirm with your ears.</h2>"
             send_notification(action, request.args.get('sentBy'), ip_addr)
         else:
@@ -83,7 +83,7 @@ def emergencyAlarm():
     
     if (code_is_valid(request.args.get('code')) and running_on_linux()):
         output = execute_command(commandName);
-        if command_ran_successfully():
+        if command_ran_successfully(output):
             html_output = f"<h1> Alarm (maybe) {action}. </h1> <h2>Confirm with your ears.</h2>"
             send_notification(action, request.args.get('sentBy'), ip_addr)
         else:
