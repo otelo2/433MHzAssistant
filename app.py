@@ -130,7 +130,7 @@ def send_notification(action, senderName, ip):
     priority = "default"
     
     # Get the current time and format it
-    currentTime = datetime.now().strftime("%H:%M:%S")
+    currentTime = datetime.datetime.now().strftime("%H:%M:%S")
     
     if action == "disarmed":
         tags = "green_square,speaker"
